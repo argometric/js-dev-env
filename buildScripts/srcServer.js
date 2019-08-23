@@ -15,6 +15,10 @@ app.use(require('webpack-dev-middleware')(compiler, {
 	publicPath: config.output.publicPath
 }));
 
+app.get('/', (req, res) => {
+	res.sendFile(path.join(__dirname, '../src/index.html'));
+});
+
 app.get('/users', function (req, res) {
 	//hard coded for testing
 	res.json([
@@ -24,9 +28,7 @@ app.get('/users', function (req, res) {
 	]);
 });
 
-app.get('/', (req, res) => {
-	res.sendFile(path.join(__dirname, '../src/index.html'));
-});
+
 
 app.listen(port, (err) => {
 	if (err) {
